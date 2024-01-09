@@ -11,3 +11,7 @@ az appservice plan create --name webappavayaplan --resource-group rg-web-app-ava
 az webapp create --resource-group rg-web-app-avaya-bot --plan webappavayaplan --name avayabotv1 --docker-registry-server-password $ACR_PASSWORD --docker-registry-server-user webappavaya --role acrpull --deployment-container-image-name webappavaya.azurecr.io/avayabot:v1
 
 docker build -t avayabot:v3 .
+
+
+git config --global user.email "timothy.oleson@gmail.com"
+  git config --global user.name "onemanwolf"
