@@ -4,7 +4,7 @@ az acr create --resource-group rg-web-app-avaya-bot --name webappavaya --sku Bas
 
 $ACR_PASSWORD=$(az acr credential show --resource-group rg-web-app-avaya-bot --name webappavaya --query "passwords[?name == 'password'].value" --output tsv)
 
-az acr build --resource-group rg-web-app-avaya-bot --registry webappavaya  --image avayabot:v1 .
+az acr build --resource-group rg-web-app-avaya-bot --registry webappavaya  --image avayabot:v3 .
 
 az appservice plan create --name webappavayaplan --resource-group rg-web-app-avaya-bot --sku B1 --is-linux
 
@@ -12,6 +12,8 @@ az webapp create --resource-group rg-web-app-avaya-bot --plan webappavayaplan --
 
 docker build -t avayabot:v3 .
 
+docker run -it --publish 3978:3978 avayabot:v3
+docker run -it --publish 3978:3978 --env-file .evn avayabot:v3
 
 git config --global user.email "timothy.oleson@gmail.com"
   git config --global user.name "onemanwolf"

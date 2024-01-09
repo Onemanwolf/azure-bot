@@ -33,6 +33,26 @@
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal"
     },
+
+    {
+      "name": "Python: Docker - Run Image",
+      "type": "docker",
+      "request": "launch",
+      "preLaunchTask": "docker-run: debug",
+
+      "python": {
+
+
+        "pathMappings": [
+          {
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "/app"
+          }
+        ],
+
+        "file": "app.py"
+      }
+    },
     {
       "name": "Docker: Python - General",
       "type": "docker",

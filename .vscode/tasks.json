@@ -76,6 +76,12 @@
       "type": "docker-run",
       "label": "docker-run: debug",
       "dependsOn": ["docker-build"],
+      "dockerRun": {
+        "image": "avayabot:v3",
+      "ports":[{ "containerPort": 3978, "hostPort": 3978 }],
+      "envFiles": ["${workspaceFolder}/.env"],
+      "remove": true
+      },
       "python": {
         "file": "app.py"
       }
