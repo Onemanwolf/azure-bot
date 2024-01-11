@@ -1,19 +1,33 @@
-az group create --name rg-web-app-avaya-bot --location eastus
+$RG_NAME="RG-OpenAI-DEV"
+$LOCATION="eastus"
+$ACR_NAME="acrdevrgopenaidev"
+$WEB_APP_NAME="WebappOpenAITeamsBot"
+$PLAN_NAME="AppServicePlanOpenAITeamsBot"
+$BOT_NAME="OpenAITeamsBot"
 
-az acr create --resource-group rg-web-app-avaya-bot --name webappavaya --sku Basic --admin-enabled true
 
-$ACR_PASSWORD=$(az acr credential show --resource-group rg-web-app-avaya-bot --name webappavaya --query "passwords[?name == 'password'].value" --output tsv)
 
-az acr build --resource-group rg-web-app-avaya-bot --registry webappavaya  --image avayabot:v3 .
 
-az appservice plan create --name webappavayaplan --resource-group rg-web-app-avaya-bot --sku B1 --is-linux
+az group create --name rg-web-app-avaya-bot --location eastus ## not needed if you already have a resource group ##
 
-az webapp create --resource-group rg-web-app-avaya-bot --plan webappavayaplan --name avayabotv1 --docker-registry-server-password $ACR_PASSWORD --docker-registry-server-user webappavaya --role acrpull --deployment-container-image-name webappavaya.azurecr.io/avayabot:v1
+az acr create --resource-group $RG_NAME --name $ACR_NAME --sku Basic --admin-enabled true ##
+
+$ACR_PASSWORD=$(az acr credential show --resource-group $RG_NAME --name $ACR_NAME --query "passwords[?name == 'password'].value" --output tsv)
+
+az acr build --resource-group $RG_NAME --registry $ACR_NAME  --image avayabot:v3 . ##
+
+az appservice plan create --name $PLAN_NAME --resource-group $RG_NAME --sku B1 --is-linux ##
+
+az webapp create --resource-group $RG_NAME --plan $PLAN_NAME --name $WEB_APP_NAME --docker-registry-server-password $ACR_PASSWORD --docker-registry-server-user $ACR_NAME --role acrpull --deployment-container-image-name webappavaya.azurecr.io/avayabot:v3
+
+az webapp config appsettings set --name thecodebuzz-ui --resource-group thecodebuzz --settings "MICROSOFT_APP_ID=<<APP_ID>>" "MICROSOFT_APP_PASSWORD=<<APP_PASSWORD>>"
 
 docker build -t avayabot:v3 .
 
 docker run -it --publish 3978:3978 avayabot:v3
 docker run -it --publish 3978:3978 --env-file .evn avayabot:v3
 
-git config --global user.email "timothy.oleson@gmail.com"
-  git config --global user.name "onemanwolf"
+ngrok http 3978 --host-header="localhost:3978"
+
+
+az provider register --namespace Microsoft.BotService 
