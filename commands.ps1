@@ -5,6 +5,14 @@ $WEB_APP_NAME="WebappOpenAITeamsBot"
 $PLAN_NAME="AppServicePlanOpenAITeamsBot"
 $BOT_NAME="OpenAITeamsBot"
 
+$RG_NAME="rg-web-app-avaya-bot"
+$LOCATION="eastus"
+$ACR_NAME="webappavaya"
+$WEB_APP_NAME="WebappOpenAITeamsBot"
+$PLAN_NAME="AppServicePlanOpenAITeamsBot"
+$BOT_NAME="OpenAITeamsBot"
+
+
 
 
 
@@ -14,7 +22,7 @@ az acr create --resource-group $RG_NAME --name $ACR_NAME --sku Basic --admin-ena
 
 $ACR_PASSWORD=$(az acr credential show --resource-group $RG_NAME --name $ACR_NAME --query "passwords[?name == 'password'].value" --output tsv)
 
-az acr build --resource-group $RG_NAME --registry $ACR_NAME  --image avayabot:v3 . ##
+az acr build --resource-group $RG_NAME --registry $ACR_NAME  --image avayabot:v6.0.0 . ##
 
 az appservice plan create --name $PLAN_NAME --resource-group $RG_NAME --sku B1 --is-linux ##
 
@@ -22,12 +30,17 @@ az webapp create --resource-group $RG_NAME --plan $PLAN_NAME --name $WEB_APP_NAM
 
 az webapp config appsettings set --name thecodebuzz-ui --resource-group thecodebuzz --settings "MICROSOFT_APP_ID=<<APP_ID>>" "MICROSOFT_APP_PASSWORD=<<APP_PASSWORD>>"
 
-docker build -t avayabot:v3 .
+docker build -t avayabot:v6.0.0 .
 
 docker run -it --publish 3978:3978 avayabot:v3
 docker run -it --publish 3978:3978 --env-file .evn avayabot:v3
 
-ngrok http 3978 --host-header="localhost:3978"
+ngrok http 3978 --host-header="0.0.0.0:3978"
 
 
-az provider register --namespace Microsoft.BotService 
+az provider register --namespace Microsoft.BotService
+
+az webapp config appsettings list --name $WEB_APP_NAME --resource-group $RG_NAME > settings.json
+
+
+az webapp config appsettings set --resource-group $RG_NAME --name $WEB_APP_NAME --settings @settings.json

@@ -77,7 +77,7 @@
       "label": "docker-run: debug",
       "dependsOn": ["docker-build"],
       "dockerRun": {
-        "image": "avayabot:v3",
+        "image": "avayabot:v6.0.0",
       "ports":[{ "containerPort": 3978, "hostPort": 3978 }],
       "envFiles": ["${workspaceFolder}/.env"],
       "remove": true

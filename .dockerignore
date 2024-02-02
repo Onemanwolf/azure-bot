@@ -23,5 +23,7 @@
 **/obj
 **/secrets.dev.yaml
 **/values.dev.yaml
+**/env
+**/assets
 LICENSE
 README.md

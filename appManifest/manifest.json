@@ -1,68 +1,70 @@
 {
-    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.14/MicrosoftTeams.schema.json",
-    "manifestVersion": "1.14",
-    "version": "1.0.0",
-    "id": "20f34194-7799-4762-b0e5-41d7ddb90e22",
-    "packageName": "com.teams.sample.teamsconversationbot",
-    "developer": {
-      "name": "teamsConversationBot",
-      "websiteUrl": "https://www.microsoft.com",
-      "privacyUrl": "https://www.teams.com/privacy",
-      "termsOfUseUrl": "https://www.teams.com/termsofuser"
-    },
-    "icons": {
-      "outline": "outline.png",
-      "color": "color.png"
-    },
-    "name": {
-      "short": "TeamsConversationBot",
-      "full": "TeamsConversationBot"
-    },
-    "description": {
-      "short": "TeamsConversationBot",
-      "full": "TeamsConversationBot"
-    },
-    "accentColor": "#FFFFFF",
-    "bots": [
-      {
-        "botId": "6bb6245f-400c-4e31-9473-e6dd60c96023",
-        "scopes": [
-          "personal",
-          "groupchat",
-          "team"
-        ],
-        "isNotificationOnly": false,
-        "supportsCalling": false,
-        "supportsVideo": false,
-        "supportsFiles": false,
-          "commandLists": [
-          {
-            "scopes": [
-              "personal",
-              "groupchat",
-              "team"
-            ],
-            "commands": [
-              {
-                "title": "Performance review",
-                "description": "What happens in a performance review?"
-              },
-              {
-                "title": "Product Manager",
-                "description": "What does a Product Manager do?"
-              },
-              {
-                "title": "Northwind Health Plus plan",
-                "description": "What is in my Northwind Health plan?"
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    "permissions": [
-      "identity",
-      "messageTeamMembers"
-    ],
-    "validDomains": ["${{BOT_DOMAIN}}"]
-  }
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.14/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.14",
+  "version": "1.0.0",
+  "id": "20f34194-7799-4762-b0e5-41d7ddb90e22",
+  "packageName": "com.teams.sample.teamsconversationbot",
+  "developer": {
+    "name": "AvayaBot",
+    "websiteUrl": "https://www.microsoft.com",
+    "privacyUrl": "https://www.teams.com/privacy",
+    "termsOfUseUrl": "https://www.teams.com/termsofuser"
+  },
+  "icons": {
+    "outline": "outline.png",
+    "color": "color.png"
+  },
+  "name": {
+    "short": "TeamsConversationBot",
+    "full": "TeamsConversationBot"
+  },
+  "description": {
+    "short": "TeamsConversationBot",
+    "full": "TeamsConversationBot"
+  },
+  "accentColor": "#FFFFFF",
+  "bots": [
+    {
+      "botId": "c646cf78-ee0b-4956-ad62-939548089517",
+      "scopes": [
+        "personal",
+        "groupchat",
+        "team"
+      ],
+      "isNotificationOnly": false,
+      "supportsCalling": false,
+      "supportsVideo": false,
+      "supportsFiles": false,
+      "commandLists": [
+        {
+          "scopes": [
+            "personal",
+            "groupchat",
+            "team"
+          ],
+          "commands": [
+            {
+              "title": "What is Avaya",
+              "description": "What is Avaya?"
+            },
+            {
+              "title": "Avaya Experience Platform",
+              "description": "Avaya Experience Platform"
+            },
+            {
+              "title": "Intuitive browser-based",
+              "description": "Avaya Experience Platform?"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "permissions": [
+    "identity",
+    "messageTeamMembers"
+  ],
+  "validDomains": [
+    "${{BOT_DOMAIN}}"
+  ]
+}

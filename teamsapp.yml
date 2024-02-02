@@ -6,5 +6,5 @@ version: v1.2
 additionalMetadata:
   sampleTag: Microsoft-Teams-Samples:bot-conversation-python
 
-environmentFolderPath: ./env
+environmentFolderPath: ./
 projectId: 4f7ae1e4-d086-4d96-b078-9558da114e49

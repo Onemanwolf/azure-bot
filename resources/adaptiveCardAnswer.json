@@ -1,0 +1,116 @@
+{
+    "type": "AdaptiveCard",
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.3",
+    "body": [
+        {
+            "type": "Container",
+            "spacing": "None",
+            "items": [
+                {
+                    "type": "ColumnSet",
+                    "columns": [
+                        {
+                            "type": "Column",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": "OpenAI Bot",
+                                    "color": "attention",
+                                    "size": "Large",
+                                    "weight": "Bolder"
+                                }
+                            ],
+                            "width": "stretch"
+                        },
+                        {
+                            "type": "Column",
+                            "items": [
+                                {
+                                    "type": "Image",
+                                    "id": "4b3986aa-ca62-8df9-f4c9-5d9bc8585978",
+                                    "url":"https://ucadvisor.com/wp-content/uploads/2021/01/Avaya-min.png",
+                                    "horizontalAlignment" : "Right",
+                                    "altText": "",
+                                    "height": "36px"
+                                }
+                            ],
+                            "width": "auto",
+                            "verticalContentAlignment": "Center"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [],
+            "spacing": "large",
+            "separator": true
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "size": "Large",
+                    "weight": "Bolder",
+                    "text": "Avaya Intelligent Search Answer",
+                    "wrap": true,
+                    "style": "default",
+                    "spacing": "Large"
+                },
+                {
+                    "type": "TextBlock",
+                    "weight": "Bolder",
+                    "text": "Response:",
+                    "wrap": true,
+                    "spacing": "Large"
+                },
+                {
+                    "type": "TextBlock",
+                    "id": "e6cfb5dc-3f3a-cafa-82d9-ea69be554c08",
+                    "text": "${data}",
+                    "wrap": true
+                },
+                {
+                    "type": "TextBlock",
+                    "weight": "Bolder",
+                    "text": "Overall, how would you rate the answer?",
+                    "wrap": true,
+                    "spacing": "Large"
+                },
+                {
+                    "type": "Input.ChoiceSet",
+                    "id": "OverallRating",
+                    "placeholder": "Overall, how would you rate the event?",
+                    "choices": [
+                        {
+                            "title": "👍",
+                            "value": "👍"
+                        },
+                        {
+                            "title": "👎",
+                            "value": "👎"
+                        }
+                    ],
+                    "style": "expanded",
+                    "isRequired": true
+                },
+                {
+                    "type": "ActionSet",
+                    "actions": [
+                        {
+                            "type": "Action.Submit",
+                            "title": "Submit Rating",
+                            "data": {
+                                "id": "Submit"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "spacing": "None"
+        }
+    ]
+}
